@@ -31,12 +31,13 @@ var options = {
 request(options, function (error, response) {
   if (error) throw new Error(error);
   console.log("response Body", response.body);
-  app.locals.account = response.body
+  app.locals.account = JSON.parse(response.body)
   console.log("app.locals.account", app.locals.account)
+  console.log("app.locals.account", typeof app.locals.account)
+
 });
 
 app.get('/api/v1/account', (request, response) => {
     const account = app.locals.account;
-  
-    response.send({ account });
+    response.json({ account });
   });
