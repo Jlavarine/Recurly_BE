@@ -38,5 +38,5 @@ request(options, function (error, response) {
 app.get('/api/v1/account', (request, response) => {
     const account = app.locals.account;
   
-    response.json({ account });
+    response.send({ account });
   });
