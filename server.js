@@ -17,6 +17,7 @@ app.listen(app.get('port'), () => {
 });
 
 app.locals.account = []
+app.locals.updatedAddress = []
 
 var request = require('request');
 var options = {
@@ -46,7 +47,7 @@ app.get('/api/v1/account', (request, response) => {
   app.put('/api/v1/account', (request, response) => {
     app.locals.updatedAddress = response.body
   
-    response.status(201).json('You updated your address successfully');
+    response.status(201).json(console.log(app.locals.updatedAddress));
   });
 
 //   app.put('/api/v1/account', (request, response) => {
