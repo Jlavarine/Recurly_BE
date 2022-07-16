@@ -10,7 +10,7 @@ app.use(express.json());
 app.set('port', process.env.PORT || 3001);
 app.locals.title = 'Recurly Take Home';
 
-app.get('/', (response) => {
+app.get('/', (request, response) => {
   response.send('Hello World!');
 });
 
@@ -39,7 +39,7 @@ request(options, function (error, response) {
 });
 // request for GET to API 
 
-app.get('/api/v1/account', (response) => {
+app.get('/api/v1/account', (request, response) => {
     const account = app.locals.account;
     response.json({ account });
 });
