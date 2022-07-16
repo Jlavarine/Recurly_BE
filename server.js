@@ -42,12 +42,20 @@ app.get('/api/v1/account', (request, response) => {
   });
 
 
-  app.put('/api/v1/account', (request, response) => {
-    console.log('request.body', request.body)
-    app.locals.updatedAddress = response.body
-  
-    response.status(201).json('success');
-  });
+// app.put('/api/v1/account', (request, response) => {
+//   console.log('request.body', request.body)
+//   app.locals.updatedAddress = response.body
+
+//   response.status(201).json('success');
+// });
+
+app.put('/api/v1/account', (request, response) => {
+  app.locals.updatedAddress = request.body;
+
+  app.locals.account.address = app.locals.updatedAddress
+
+  response.status(201).json(app.locals.account);
+});
 
 var request = require('request');
 var options = {
