@@ -3,7 +3,6 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
-
 app.use(cors())
 // error handling for CORS errors
 app.use(express.json());
@@ -40,15 +39,12 @@ request(options, function (error, response) {
 // request for GET to API 
 
 app.get('/api/v1/account', (request, response) => {
-    const account = app.locals.account;
-    response.json({ account });
+  const account = app.locals.account;
+  response.json({ account });
 });
 // response for GET
 
 app.put('/api/v1/account', (request, response) => {
-// console.log('putputputPUT')
-// console.log('body', request.body)
-
   var requestother = require('request');
   var options = {
     'method': 'PUT',
@@ -59,19 +55,12 @@ app.put('/api/v1/account', (request, response) => {
       'Authorization': 'Basic OTBhZmRjYTkxMWZmNDJlNzlkN2ExMzRkY2YzOTRjMTc6'
     },
     'body': JSON.stringify(request.body)
-  
   };
-   requestother(options, function (error, response) {
+  requestother(options, function (error, response) {
     console.log('inside request Other', response.body)
     app.locals.account = JSON.parse(response.body)
     return response.body
-
-    // error ? error : null
-    
-    
-    // if (error) throw new Error(error);
-    // app.locals.account.address = JSON.parse(response.body)
   });
-  console.log('account', app.locals.account)
   response.status(201).send('Success!').end()
 });
+// request and response for PUT
