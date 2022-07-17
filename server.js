@@ -46,26 +46,32 @@ app.get('/api/v1/account', (request, response) => {
 // response for GET
 
 app.put('/api/v1/account', (request, response) => {
-  app.locals.updatedAddress = request.body;
-  app.locals.account.address = app.locals.updatedAddress
-  response.status(203).json(app.locals.account);
-});
-// Response for PUT (returning updated account)
+// console.log('putputputPUT')
+// console.log('body', request.body)
 
-var request = require('request');
-var options = {
-  'method': 'PUT',
-  'url': 'https://v3.recurly.com/accounts/code-1612',
-  'headers': {
-    'Accept': 'application/vnd.recurly.v2021-02-25',
-    'Content-Type': 'application/json',
-    'Authorization': 'Basic OTBhZmRjYTkxMWZmNDJlNzlkN2ExMzRkY2YzOTRjMTc6'
-  },
-  'body': JSON.stringify(app.locals.updatedAddress)
+  var requestother = require('request');
+  var options = {
+    'method': 'PUT',
+    'url': 'https://v3.recurly.com/accounts/code-1612',
+    'headers': {
+      'Accept': 'application/vnd.recurly.v2021-02-25',
+      'Content-Type': 'application/json',
+      'Authorization': 'Basic OTBhZmRjYTkxMWZmNDJlNzlkN2ExMzRkY2YzOTRjMTc6'
+    },
+    'body': JSON.stringify(request.body)
+  
+  };
+   requestother(options, function (error, response) {
+    console.log('inside request Other', response.body)
+    app.locals.account = response.body
+    return response.body
 
-};
-request(options, function (error, response) {
-  if (error) throw new Error(error);
-  app.locals.account.address = JSON.parse(response.body)
+    // error ? error : null
+    
+    
+    // if (error) throw new Error(error);
+    // app.locals.account.address = JSON.parse(response.body)
+  });
+  console.log('account', app.locals.account)
+  response.status(201).send('Success!').end()
 });
-// Request for PUT
