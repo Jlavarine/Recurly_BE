@@ -61,7 +61,7 @@ var options = {
     'Content-Type': 'application/json',
     'Authorization': 'Basic OTBhZmRjYTkxMWZmNDJlNzlkN2ExMzRkY2YzOTRjMTc6'
   },
-  body: JSON.stringify(app.locals.updatedAddress)
+  'body': JSON.stringify(app.locals.updatedAddress)
 
 };
 request(options, function (error, response) {
