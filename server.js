@@ -63,7 +63,7 @@ app.put('/api/v1/account', (request, response) => {
   };
    requestother(options, function (error, response) {
     console.log('inside request Other', response.body)
-    app.locals.account = response.body
+    app.locals.account = JSON.parse(response.body)
     return response.body
 
     // error ? error : null
