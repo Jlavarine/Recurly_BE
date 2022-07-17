@@ -48,7 +48,7 @@ app.get('/api/v1/account', (request, response) => {
 app.put('/api/v1/account', (request, response) => {
   app.locals.updatedAddress = request.body;
   app.locals.account.address = app.locals.updatedAddress
-  response.status(201).json(app.locals.account);
+  response.status(203).json(app.locals.account);
 });
 // Response for PUT (returning updated account)
 
